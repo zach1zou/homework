@@ -1,7 +1,7 @@
 <template>
   <div>
         <p>{{str}}解析</p>
-        <p @click="solve()">点击解析后结果</p>
+        <p @click="solve()">点击解析后结果{{obj}}</p>
 
   </div>
 </template>
@@ -36,8 +36,13 @@ export default {
         //     console.log(arrJson);
         //     arrJson = JSON.parse(arrJson);
         //  console.log(arrJson);
-      
-            
+            let obj = arr.reduce((pre, cre) => {
+                let [key, value] = cre.split(":");
+                pre[key] = value
+                return pre
+            }, {})
+             console.log(obj);
+            this.obj=obj
         }
     },
   created () {

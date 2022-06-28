@@ -2,7 +2,7 @@
   <div>
     <ReduceVue></ReduceVue>
     <StrsolveVue></StrsolveVue>
-    <HelloWorldVue></HelloWorldVue>
+   
 
   </div>
 </template>
