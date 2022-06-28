@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <ReduceVue></ReduceVue>
+    <StrsolveVue></StrsolveVue>
+    <HelloWorldVue></HelloWorldVue>
+
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorldVue from './components/HelloWorld.vue'
+import ReduceVue from './components/reduce.vue'
+import StrsolveVue from './components/strsolve.vue'
 
 export default {
-  name: 'App',
+  props: [],
   components: {
-    HelloWorld
-  }
+    HelloWorldVue,
+    ReduceVue,
+    StrsolveVue
+    
+},
+  data () {
+    return {
+    }
+  },
+  methods: {
+  },
+  created () {
+  },
+  mounted () {
+  },
+  filters: {
+  },
+  computed: {
+  },
+  watch: {
+  },
 }
 </script>
+<style lang="less" scoped>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
