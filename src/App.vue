@@ -1,42 +1,33 @@
+<!-- http://www.baidu.com?name=zhangsan&age=18&sex=nan#
+解析出
+ {name: 'zhangsan',age: 18, sex: 'nan' } -->
+
 <template>
-  <div>
-    <ReduceVue></ReduceVue>
-    <StrsolveVue></StrsolveVue>
-   
-
-  </div>
+	
+	<div></div>
 </template>
+
 <script>
-import HelloWorldVue from './components/HelloWorld.vue'
-import ReduceVue from './components/reduce.vue'
-import StrsolveVue from './components/strsolve.vue'
-
-export default {
-  props: [],
-  components: {
-    HelloWorldVue,
-    ReduceVue,
-    StrsolveVue
-    
-},
-  data () {
-    return {
-    }
-  },
-  methods: {
-  },
-  created () {
-  },
-  mounted () {
-  },
-  filters: {
-  },
-  computed: {
-  },
-  watch: {
-  },
+let str = 'http://www.baidu.com?name=zhangsan&age=nan&sex=nan#';
+function getUrl(str) {
+	console.log(str);
+	console.log(str.indexOf('?'));
+	console.log(str.indexOf('#'));
+	console.log(str.slice(21, 50));
+	console.log(str.slice(21, 50).split('&'));
+	var newStr = str.slice(str.indexOf('?') + 1, str.indexOf('#')).split('&'); // console.log(newStr);
+	const obj = {};
+	newStr.forEach((item) => {
+		console.log(item);
+		const [key, val] = item.split('=');
+		console.log([key, val]);
+		obj[key] = val;
+	});
+	return obj;
 }
+getUrl(str);
+console.log(getUrl(str));
+export default {};
 </script>
-<style lang="less" scoped>
 
-</style>
+<style></style>
