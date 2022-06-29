@@ -1,9 +1,7 @@
 <template>
   <div>
         <p @click="getSomeValues()">点击统计{{str}}每个字符出现的次数</p>
-        <ul v-for="(index,item) in arr" v-show="isshow">
-          <li>{{item}}出现的次数是{{index}}</li>
-          </ul>
+        <ul v-for="(index,item) in arr" v-show="isshow"><li>{{item}}出现的次数是{{index}}</li></ul>
   </div>
 </template>
 <script>
