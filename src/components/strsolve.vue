@@ -1,7 +1,7 @@
 <template>
   <div>
         <p>{{str}}解析</p>
-        <p @click="solve()">点击解析后结果{{obj}}</p>
+        <p @click="solve()">点击解析后结果</p>
 
   </div>
 </template>
