@@ -1,42 +1,34 @@
 <template>
   <div>
-    <ReduceVue></ReduceVue>
-    <StrsolveVue></StrsolveVue>
-   
-
+    <ul>
+      <li
+        :class="{ active: index === currentIndex }"
+        v-for="(item, index) in navs"
+        :key="index"
+        @click="changeFn(index)"
+      >
+        大学起点
+      </li>
+    </ul>
   </div>
 </template>
-<script>
-import HelloWorldVue from './components/HelloWorld.vue'
-import ReduceVue from './components/reduce.vue'
-import StrsolveVue from './components/strsolve.vue'
 
+<script>
 export default {
-  props: [],
-  components: {
-    HelloWorldVue,
-    ReduceVue,
-    StrsolveVue
-    
-},
-  data () {
+  data() {
     return {
-    }
+      navs: ["大学起点", "高中起点", "初中起点", "小学起点"],
+      currentIndex: 0,
+    };
   },
   methods: {
+    changeFn(index) {
+      this.currentIndex = index;
+    },
   },
-  created () {
-  },
-  mounted () {
-  },
-  filters: {
-  },
-  computed: {
-  },
-  watch: {
-  },
-}
+};
 </script>
-<style lang="less" scoped>
 
+
+<style>
 </style>
