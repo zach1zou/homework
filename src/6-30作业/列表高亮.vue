@@ -7,7 +7,7 @@
         :key="index"
         @click="changeFn(index)"
       >
-        {{item}}
+        大学起点
       </li>
     </ul>
   </div>
