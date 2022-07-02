@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>instanceof</title>
+  </head>
+  <body>
+    <script>
+      function instance(L, R) {
+        //L 表示左表达式，R 表示右表达式
+        var O = R.prototype;
+        L = L.__proto__;
+        while (true) {
+          if (L === null) return false;
+          if (O === L) return true;
+          L = L.__proto__;
+        }
+      }
+      let arr = [];
+      let flag = instance(arr, Array);
+      console.log(flag);
+    </script>
+  </body>
+</html>

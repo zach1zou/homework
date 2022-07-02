@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const obj = {
+        str: "Jack",
+        address: {
+          x: 100,
+          y: 200,
+        },
+        arr: [],
+        fn: function () {},
+      };
+      function _completeDeepClone(target, map = new Map()) {
+        // 补全代码
+        if (target == null || typeof target != "object") return obj;
+        if (target instanceof Date) return new Date(target);
+        if (target instanceof RegExp) return new RegExp(target);
+        let copyObj = new target.constructor();
+        map.set(target, copyObj);
+        for (let key in target) {
+          //判断数据类型
+          if (target.hasOwnProperty(key)) {
+            copyObj[key] = _completeDeepClone(target[key], map);
+          }
+        }
+        return copyObj;
+      }
+      const newObj = _completeDeepClone(obj);
+
+      console.log(newObj);
+    </script>
+  </body>
+</html>
