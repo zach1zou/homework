@@ -2,11 +2,11 @@
   <div id="app">
     <div>
       <span>姓名:</span>
-      <input type="text" v-model.trim="name" placeholder="请输入姓名" />
+      <input type="text" v-model="name" />
     </div>
     <div>
       <span>年龄:</span>
-      <input type="number" v-model.number="age" placeholder="请输入年龄" />
+      <input type="number" v-model="age" />
     </div>
     <div>
       <span>性别:</span>
@@ -16,7 +16,7 @@
       </select>
     </div>
     <div>
-      <buttonc @click.prevent="addFn(index)">添加/修改</buttonc>
+      <buttonc @click.prevent="edit(index)">添加/修改</buttonc>
     </div>
     <div>
       <table border="1" cellpadding="10" cellspacing="0">
@@ -27,14 +27,14 @@
           <th>性别</th>
           <th>操作</th>
         </tr>
-        <tr v-for="(item, index) in list" :key="item.id">
+        <tr v-for="(item, index) in list" :key="item">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.age }}</td>
           <td>{{ { 0: "女", 1: "男" }[item.sex] }}</td>
           <td>
-            <button @click="delFn(index)">删除</button>
-            <button @click.prevent="editFn(item)">编辑</button>
+            <button @click="del(index)">删除</button>
+            <button @click.prevent="edit(index)">编辑</button>
           </td>
         </tr>
         <tr v-if="list.length === 0">
@@ -56,29 +56,13 @@ export default {
       name: "",
       age: 0,
       sex: 0,
-      isEdit: false, // false 代表没有处于编辑  true  代表处于编辑
-      currentId: "",
     };
   },
   methods: {
-    delFn(val) {
+    del(val) {
       this.list.splice(val, 1);
     },
-    addFn(val) {
-      if (this.isEdit) {
-        // 说明处于编辑状态
-        // 改完之后的数据保存进去
-        // 当前这个数据的id
-        const index = this.list.findIndex((ele) => ele.id == this.currentId);
-        this.list[index].name = this.name;
-        this.list[index].age = this.age;
-        this.list[index].sex = this.sex;
-        this.currentId = "";
-        this.isEdit = false; //再次便会添加
-        this.clearFn();
-        alert("修改完成");
-        return;
-      }
+    edit(val) {
       if (this.name == "" || this.age == "") {
         return alert("Please select a name and age to edit.");
       }
@@ -91,22 +75,10 @@ export default {
         age: this.age,
         sex: this.sex,
       });
-      this.clearFn();
+      this.name = "";
+      this.age = 0;
+      this.sex = 0;
     },
-  },
-  editFn(data) {
-    this.isEdit = true;
-    console.log(data);
-    this.name = data.name;
-    this.age = data.age;
-    this.sex = data.sex;
-    // 当前这个数据的id 要保存下来
-    this.currentId = data.id;
-  },
-  clearFn() {
-    this.name = "";
-    this.age = 0;
-    this.sex = 0;
   },
 };
 </script>
