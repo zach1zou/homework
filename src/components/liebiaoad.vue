@@ -28,14 +28,14 @@
 
                         <!-- 如果价格超过100，就有red这个类 -->
                         <td :class="{ red: item.price > 100 }">{{item.price}}</td>
-                        <td>{{item.time}}</td>
+                        <td>{{item.time|format}}</td>
                         <td><a href="#" @click.prevent="delFn(item.id)">删除</a></td>
                     </tr>
-                    <!-- <tr style="background-color: #EEE">
-              <td>统计:</td>
-              <td colspan="2">总价钱为: 0</td>
-              <td colspan="2">平均价: 0</td>
-          </tr> -->
+                    <tr style="background-color: #EEE">
+                        <td>统计:</td>
+                        <td colspan="2">总价钱为: {{getTotalPrice.toFixed(2)}}</td>
+                        <td colspan="2">平均价: {{getAvgPrice.toFixed(2)}}</td>
+                    </tr>
                 </tbody>
                 <!-- 
         <tfoot >
@@ -65,39 +65,51 @@
             </form>
             <!--  -->
             <ul>
-                <li v-for="item in arr">{{item}}</li>
+                <li v-for="item in arr2">{{item}}</li>
             </ul>
             <button @click="btn">点一下</button>
         </div>
+        <!-- 过滤器 -->
+        <p>{{ msg | toUp | reverse }}</p>
+        <!-- 计算属性的完整写法 -->
+        <span>姓</span><input type="text" name="" id="" v-model="firstname">
+        <span>名</span><input type="text" name="" id="" v-model="lastname">
+        <span>姓名</span><input type="text" name="" id="" v-model="fullName">
+        <!-- 监听    -->
+ 
     </div>
 
 </template>
 <script>
+
+
+import  moment from 'moment';
 export default {
-  props: [],
-  components: {
-  },
-  data () {
-      return {
-          Color: 'red',
-          name: '',
-          price: 0,
-          list: [
-              { id: 100, name: "外套", price: 199, time: new Date('2010-08-12').toLocaleString() },
-              { id: 101, name: "裤子", price: 34, time: new Date('2013-09-01').toLocaleString() },
-              { id: 102, name: "鞋", price: 25.4, time: new Date('2018-11-22').toLocaleString() },
-              { id: 103, name: "头发", price: 19900, time: new Date('2020-12-12').toLocaleString() }
-          ],
-          arr:['帅哥','美女','程序员']
-    }
-  },
+    props: [],
+    components: {
+    },
+    data() {
+        return {
+            msg: 'hello world',
+            Color: 'red',
+            name: '',
+            firstname: '',
+            lastname: '',
+          
+            price: 0,
+
+            list: JSON.parse(localStorage.getItem('plist')) || [], 
+
+            arr2: ['帅哥', '美女', '程序员']
+        }
+    },
     methods: {
-        addFn() { 
-            if (this.name == '' || this.price == 0) { 
-              return  alert('请添加数据')
+        addFn() {
+            if (this.name == '' || this.price == 0) {
+                return alert('请添加数据')
             }
-            const Id = this.list[this.list.length - 1]? this.list[this.list.length - 1].id + 1:100
-                //新增
+            const Id = this.list[this.list.length - 1] ? this.list[this.list.length - 1].id + 1 : 100
+            //新增
             this.list.push({
                 id: Id,
                 name: this.name,
@@ -108,8 +120,8 @@ export default {
             this.name = ''
             this.price = 0
         },
-        delFn(id) { 
-            let index = this.list.findIndex((val) => { 
+        delFn(id) {
+            let index = this.list.findIndex((val) => {
                 return id == val.id
             })
             this.list.splice(index, 1)
@@ -118,17 +130,55 @@ export default {
             this.arr.push(this.arr[0])
             this.arr.shift()
         }
-  },
-  created () {
-  },
-  mounted () {
-  },
-  filters: {
-  },
-  computed: {
-  },
-  watch: {
-  },
+    },
+    created() {
+    },
+    updated() {
+        
+     },
+    mounted() {
+    },
+    filters: {
+        //过滤器的名称
+        toUp(val) {
+            return val.toUpperCase()
+        },
+        format(val) {
+            return moment(val).format('YYYY-MM-DD')
+        }
+    },
+    computed: {
+        getTotalPrice() {
+            return this.list.reduce((sum, obj) => sum += obj.price, 0)
+        },
+        getAvgPrice() {
+            return this.getTotalPrice / this.list.length
+        },
+        fullName: {
+            set(val) {
+                const arr = val.split('.')
+                this.firstname = arr[0] || ''
+                this.lastname = arr[1] || ''
+
+            },
+            get() {
+                return this.firstname + '.' + this.lastname
+            }
+        },
+
+
+    },
+    watch: {
+        
+        //list 发生变化的时候 list数组存入localStroge中
+        list: {
+            handler(newValue, oldValue) {
+                localStorage.setItem('plist',JSON.stringify(newValue))
+            },
+            deep: true,
+            immediate: true
+        },
+    }
 }
 </script>
 <style lang="less" scoped>

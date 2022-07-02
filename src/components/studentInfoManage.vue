@@ -2,11 +2,11 @@
     <div>
         <div>
             <span>姓名:</span>
-            <input type="text" v-model="obj.name" />
+            <input type="text" v-model.trim="obj.name" placeholder="请输入姓名"/>
         </div>
         <div>
             <span>年龄:</span>
-            <input type="number" v-model="obj.age" />
+            <input type="number" v-model.number="obj.age" placeholder="请输入年龄"/>
         </div>
         <div>
             <span>性别:</span>
@@ -50,6 +50,10 @@
                 <button @click="currentChanged()">确认修改</button>
                 <button @click="changeshow">取消</button>
             </div>
+            <br>
+            <br>
+            <br>
+
         </div>
     </div>
 </template>
@@ -65,14 +69,15 @@ export default {
           newObj: {
                 id:1,
               changeName: '',
-              changeAge: 18,
+              changeAge: 0,
               changeSex:'男',
           },
           obj: {
               name: '',
-              age: 18,
-            sex:'男'
+              age: '',
+              sex:'男'
           },
+        //   arr:[]
           arr: [{
               id:1,
               uname: '张三',
@@ -91,13 +96,15 @@ export default {
             if (this.obj.name == '' ) {
                 return alert('请添加数据')
             }
-            const Id = this.arr[this.arr.length - 1] ? this.arr[this.arr.length - 1].id:1
+            const Id = this.arr[this.arr.length - 1] ? this.arr[this.arr.length - 1].id+1:1
             this.arr.push({
                 id: Id,
                 uname: this.obj.name,
                 age: this.obj.age,
                 sex: this.obj.sex
             })
+            this.obj.name = ''
+            this.obj.age=''
         },
         delFn(id) { 
             let index = this.arr.findIndex((val) => {
@@ -112,10 +119,14 @@ export default {
             })
             console.log(index);
             this.index = index
-           
+            this.newObj = {
+                id: id,
+                changeName: this.arr[index].uname,
+                changeAge: this.arr[index].age,
+                changeSex: this.arr[index].sex
+            }
         },
         currentChanged() {
-          
             this.arr[this.index] = {
                 id:this.arr[this.index].id,
                 uname: this.newObj.changeName,
