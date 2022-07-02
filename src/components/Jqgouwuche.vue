@@ -95,8 +95,8 @@
                             <input type="checkbox" name="" id="" class="checkall" v-model="isAll">全选
                         </div>
                         <div class="operation">
-                            <a href="javascript:;" class="remove-batch"> 删除选中的商品</a>
-                            <a href="javascript:;" class="clear-all">清理购物车</a>
+                            <a href="javascript:;" class="remove-batch" @click="delCheck"> 删除选中的商品</a>
+                            <a href="javascript:;" class="clear-all" @click="clearAll">清理购物车</a>
                         </div>
                         <div class="toolbar-right">
                             <div class="amount-sum">已经选<em>{{ getTotalNumber }}</em>件商品</div>
@@ -233,24 +233,30 @@ export default {
       return {
           goods: JSON.parse(localStorage.getItem("plist")) ||[{
                 id:1 ,
-                name: '【5本26.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
-              price: 12.99,
+                name: '【5本16.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
+              price: 16.8,
               num: 0,
                 flag:false
           }, {
                   id: 2,
               name: '【15本26.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
-              price: 22.99,
+              price: 26.8,
               num: 0,
               flag: false
               },
               {
                   id: 3,
-                  name: '【25本26.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
-                  price: 32.99,
+                  name: '【25本36.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
+                  price: 36.8,
                   num: 0,
                   flag: false
-              },
+              }, {
+                  id: 4,
+                  name: '【35本46.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲',
+                  price: 46.8,
+                  num: 0,
+                  flag: false
+              }
            
           ]
     }
@@ -267,7 +273,20 @@ export default {
                 return id==val.id
             })
             this.goods.splice(index,1)
+        },
+        delCheck() {
+            this.goods = this.goods.filter((val) => {return val.flag==false})
+            // let index = this.goods.findIndex((val) => {
+            //     return val.flag == true
+            // })
+            // for (let i=0; i<this.goods.length; i++) { 
+            //     this.goods.splice(index, 1)
+            // }     
+        },
+        clearAll() { 
+            this.goods.splice(0, this.goods.length)
         }
+    
 
         
   },
@@ -303,7 +322,8 @@ export default {
             return this.goods.reduce((sum, obj) => { 
                 return sum+=obj.price*obj.num
             },0)
-        }
+        },
+      
   },
     watch: {
         //数组发生变化的时候 数组存入localStroge中
