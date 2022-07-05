@@ -144,11 +144,15 @@ export default {
   },
   created () {
     },
+    mounted() {
+    },
     updated() { 
 
     },
-  mounted () {
-  },
+    beforeDestroy() { 
+        //销毁定时器
+    },
+  
   filters: {
   },
   computed: {
