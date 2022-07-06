@@ -1,6 +1,22 @@
 <template>
   <div id="app">
-    <BookManageVue ></BookManageVue>
+   <IphoneEmail></IphoneEmail>
+    <!-- <TableProp></TableProp> -->
+    <!-- <PannerVue>
+      <template #title>
+        <span style="color: red;">我是标题</span>
+      </template>
+      <template v-slot:content="scope">
+        <p>{{ scope.row.defaultOne}}</p>
+        <p>寒雨连江夜入吴,</p>
+        <p>平明送客楚山孤。</p>
+        <p>洛阳亲友如相问，</p>
+        <p>一片冰心在玉壶。</p>
+      </template>
+    </PannerVue> -->
+
+
+
     <!-- <template>
       <div>
         -->
@@ -80,11 +96,12 @@
       <ReduceVue></ReduceVue>
       <StrsolveVue></StrsolveVue>
       <HelloWorldVue></HelloWorldVue> -->
-
   </div>
 </template>
 <script>
-import BookManageVue from './components/BookManage.vue';
+import IphoneEmail from './components/iphoneEmail.vue'
+// import JqgouwucheVue from './components/Jqgouwuche.vue'
+// import BookManageVue from './components/BookManage.vue';
 // import axiosVue  from './components/axios.vue'
 // import buttonVue from './components/button.vue'
 // import TbodyVue from './components/tbody.vue'
@@ -93,8 +110,11 @@ import BookManageVue from './components/BookManage.vue';
 // import B from './components/B.vue'
 // import kaiyedachoubing1Vue from './components/kaiyedachoubing1.vue'
 // import kaiyedachoubingVue from './components/kaiyedachoubing.vue'
-// import PannertVue from './components/Panner.vue'
-// import JqgouwucheVue from './components/Jqgouwuche.vue'
+// import PannerVue from './components/Panner.vue'
+
+// import TableProp from './components/tableProp.vue'
+
+
 // import FilterworkVue from './components/filterwork.vue'
 // import BuybookstudyVue from './components/buybookstudy.vue'
 // import QuanxuanVue from './components/quanxuan.vue'
@@ -109,30 +129,11 @@ import BookManageVue from './components/BookManage.vue';
 export default {
   props: [],
   components: {
-    BookManageVue
-    // TbodyVue,
-    // buttonVue,
-    // axiosVue
-    // MyDog
-    // HelloWorldVue,
-    // ReduceVue,
-    // StrsolveVue,
-    // ShowgaoliangVue,
-    // Ketang,
-    // GouwucheVue,
-    // ToggleTabVue,
-    // StudentInfoManageVue,
-    // QuanxuanVue,
-    // BuybookstudyVue,
-    // FilterworkVue
-    // JqgouwucheVue,
-    // kaiyedachoubingVue,
-    // kaiyedachoubing1Vue,
-    // A,B
+    IphoneEmail
 },
   data () {
     return {
- 
+      // comName:'BookManageVue'
 
       // goodList: [
       //   {

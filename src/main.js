@@ -16,6 +16,12 @@ Vue.prototype.$message = Message
 Vue.prototype.$confirm=MessageBox.confirm
 
 Vue.use(Element);
+
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 //全局注册组件
 // Vue.component('PannertVue',Panner)
 
