@@ -44,6 +44,8 @@ obj:
   data () {
       return {
           activeName: 'a',
+          tel: '',
+          email: '',
     }
   },
   methods: {

@@ -20,8 +20,6 @@
             <p>邀请码（选填）</p>
             <van-field v-model="yqm" type="text" placeholder="请输入客户经理邀请码" />
         </van-cell-group>
-
-
     </div>
 </template>
 <script>

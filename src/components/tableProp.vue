@@ -6,7 +6,16 @@
                 <input type="text" v-model="scope.row.age">
             </template>
             <template v-slot:touxiang="scope">
-                <img style="width: 100px;" :src="scope.row.headImgUrl" alt="">
+                <div v-if="scope.row.type==1">
+                    <img style="width: 100px;" :src="scope.row.headImgUrl" alt="">
+                </div>
+                <div v-else-if="scope.row.type==0">
+                    <a style="width: 100px;" :href="scope.row.headImgUrl" alt=""> </a>
+                </div>
+                <div v-else>
+                    {{scope.row.headImgUrl}}
+                </div>
+
             </template>
         </Table>
     </div>
@@ -19,26 +28,7 @@ export default {
   },
   data () {
       return {
-          list: [
-              {
-                  name: "小传同学",
-                  age: 18,
-                  headImgUrl:
-                      "http://yun.itheima.com/Upload/./Images/20210303/603f2d2153241.jpg",
-              },
-              {
-                  name: "小黑同学",
-                  age: 25,
-                  headImgUrl:
-                      "http://yun.itheima.com/Upload/./Images/20210304/6040b101a18ef.jpg",
-              },
-              {
-                  name: "智慧同学",
-                  age: 21,
-                  headImgUrl:
-                      "http://yun.itheima.com/Upload/./Images/20210302/603e0142e535f.jpg",
-              },
-          ],
+         list:[]
     }
   },
   methods: {
