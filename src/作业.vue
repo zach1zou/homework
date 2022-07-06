@@ -1,57 +1,34 @@
 <template>
-  <div>
-    <MyHeader title="购物车案例" backgroundColor="yellowgreen" color="yellow"></MyHeader>
-    <div class="box">
-      <MyGoods v-for="item in list" :key="item.id" :obj="item"></MyGoods>
-    </div>
-    <MyFooter @changeAll="allFn" :arr="list"></MyFooter>
-  </div>
+  <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tab-pane v-model="activePhone" label="手机注册" name="first"><phonenum></phonenum></el-tab-pane>
+    <el-tab-pane v-model="activeTitle" label="邮箱注册" name="second"><Title></Title></el-tab-pane>
+    </el-tabs>
 </template>
 <script>
-import MyHeader from "./components/MyHeader.vue";
-import MyGoods from "./components/MyGoods.vue";
-import MyFooter from "./components/MyFooter.vue";
+import phonenum from "./components/phonenum.vue";
+import Title from "@/components/Title.vue";
 export default {
   data() {
-    return{
-      list:[]
-    }
-  },
-  props: {
-    obj: {
-      type: Object,
-      default: () => ({}),
-    },
+    return {
+      activePhone:"1",
+      activeTitle:"2"
+    };
   },
   components: {
-    MyHeader,
-    MyGoods,
-    MyFooter,
+    phonenum,
+    Title,
   },
   methods: {
-    allFn(bool){
-      this.list.forEach(obj => obj.goods_state = bool)
-      // 把MyFooter内的全选状态true/false同步给所有小选框的关联属性上
-    }
+    onSubmit() {
+      console.log("submit!");
+    },
+    // handleClose(done) {
+    //   this.$confirm("确认关闭？")
+    //     .then((_) => {
+    //       done();
+    //     })
+    //     .catch((_) => {});
+    // },
   },
-  created() {
-    this.$axios({
-      url: '/api/cart',
-      // parmas
-    }).then(res => {
-      console.log(res.data.list);
-      this.list = res.data.list
-    })
-  },
-  updated() {},
-  mounted() {},
-  filters: {},
-  computed: {},
-  watch: {},
 };
 </script>
-<style lang="less" scoped>
-.box{
-margin-top: 45px;
-}
-</style>
