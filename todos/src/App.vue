@@ -4,7 +4,9 @@
 		<div class="mai">
 			<MyGoods v-for="item in list" :key="item.id" :arr="item"></MyGoods>
 		</div>
-		<MyFooter ></MyFooter>
+		<MyFooter></MyFooter>
+		<Zujian></Zujian>
+		<Sjxr></Sjxr>
 	</div>
 </template>
 
@@ -12,11 +14,16 @@
 import MyFooter from './购物车/MyFooter.vue';
 import MyGoods from './购物车/MyGoods.vue';
 import MyHeade from './购物车/MyHeader.vue';
+import Zujian from './手机验证/zujian.vue';
+import Sjxr from './数据渲染/Sjxr.vue';
+
 export default {
 	components: {
 		MyFooter,
 		MyGoods,
 		MyHeade,
+		Zujian,
+		Sjxr,
 	},
 	data() {
 		return {
