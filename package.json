@@ -11,7 +11,9 @@
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
     "install": "^0.13.0",
+    "less-loader": "^11.0.0",
     "moment": "^2.29.3",
+    "sass-loader": "^13.0.2",
     "vue": "^2.6.14"
   },
   "devDependencies": {
