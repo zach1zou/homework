@@ -15,7 +15,7 @@
       <br />
       <br />
       <el-input
-        v-model="form.name"
+        v-model="tel"
         type="tel"
         label="+86"
         style="width: 30%"
