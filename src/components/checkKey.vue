@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <button v-btn-key="1">按钮一</button>
         <button v-btn-key="2">按钮二</button>
         <button v-btn-key="3">按钮三</button>
