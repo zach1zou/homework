@@ -13,11 +13,11 @@
 </template> 
 
 <script>
-import MyHeader from "./components/MyHeader.vue";
-import MyFooter from "./components/MyFooter.vue";
-import MyGoodsList from "./7-7作业/MyGoodsList.vue";
-import MyGoodsSearch from "./7-7作业/MyGoodsSearch.vue";
-import MyUserInfo from "./7-7作业/MyUserInfo.vue";
+import MyHeader from "../components/MyHeader.vue";
+import MyFooter from "../components/MyFooter.vue";
+import MyGoodsList from "./MyGoodsList.vue";
+import MyGoodsSearch from "./MyGoodsSearch.vue";
+import MyUserInfo from "./MyUserInfo.vue";
 export default {
   data() {
     return {
