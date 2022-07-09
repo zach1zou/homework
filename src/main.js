@@ -7,7 +7,9 @@ import NotFoun from '@/views/NotFound.vue';
 import Ranking from '@/views/Second/Ranking';
 import Recommend from '@/views/Second/Recommend';
 import SongList from '@/views/Second/SongList';
-
+import Anna from '@/views/zy/Anna';
+import Zhangyu from '@/views/zy/Zhangyu';
+import Zxy from '@/views/zy/Zxy';
 import VueRouter from 'vue-router';
 
 let routerPush = VueRouter.prototype.push;
@@ -32,6 +34,20 @@ const routes = [
 			{
 				path: 'recommend',
 				component: Recommend,
+				children: [
+					{
+						path: 'anna',
+						component: Anna,
+					},
+					{
+						path: 'zxy',
+						component: Zxy,
+					},
+					{
+						path: 'zhangyu',
+						component: Zhangyu,
+					},
+				],
 			},
 			{
 				path: 'songList',
