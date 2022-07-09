@@ -1,28 +1,45 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div>
+		<h1>App组件</h1>
+		<a href="#/home">首页</a>&nbsp; <a href="#/movie">电影</a>&nbsp;
+		<a href="#/about">关于</a>&nbsp;
+		<component :is="comName"></component>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Rankings from '@/views/zy/Rankings.vue';
+import Recommends from '@/views/zy/Recommends.vue';
+import SongLists from '@/views/zy/SongLists.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+	name: 'App',
+	data() {
+		return {
+			comName: 'Rankings',
+		};
+	},
+	components: {
+		Rankings,
+		Recommends,
+		SongLists,
+	},
+	created() {
+		window.onhashchange = () => {
+			switch (location.hash) {
+				case '#/movie':
+					this.comName = 'SongLists';
+
+					break;
+				case '#/about':
+					this.comName = 'Recommends';
+					break;
+				case '#/home':
+					this.comName = 'Rankings';
+					break;
+			}
+		};
+	},
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
