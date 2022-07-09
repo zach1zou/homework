@@ -1,51 +1,62 @@
 <template>
-	<div>
-		<MyHeade title="购物车案例"></MyHeade>
-		<div class="mai">
-			<MyGoods v-for="item in list" :key="item.id" :arr="item"></MyGoods>
-		</div>
-		<MyFooter></MyFooter>
-		<Zujian></Zujian>
-		<Sjxr></Sjxr>
-	</div>
+  <div>
+    <MyHeader title="TAB栏"></MyHeader>
+    <div style="margin-top: 45px">
+      <component :is="comName"></component>
+    </div>
+    <MyTabBar :arr="tabList" @changTab="changTabFn"></MyTabBar>
+  </div>
 </template>
 
 <script>
-import MyFooter from './购物车/MyFooter.vue';
-import MyGoods from './购物车/MyGoods.vue';
-import MyHeade from './购物车/MyHeader.vue';
-import Zujian from './手机验证/zujian.vue';
-import Sjxr from './数据渲染/Sjxr.vue';
+import MyHeader from "./tabbar/MyHeader.vue";
+import MyTable from "./tabbar/MyTable.vue";
+import MyTabBar from "./tabbar/MyTabBar.vue";
+
+import MyGoodsList from "./views/MyGoodsList";
+import MyGoodsSearch from "./views/MyGoodsSearch.vue";
+import MyUserInfo from "./views/MyUserInfo.vue";
 
 export default {
-	components: {
-		MyFooter,
-		MyGoods,
-		MyHeade,
-		Zujian,
-		Sjxr,
-	},
-	data() {
-		return {
-			// 定义空数组来接收请求回来的数据
-			list: [],
-		};
-	},
+  components: {
+    MyHeader,
+    MyTable,
+    MyTabBar,
+    MyGoodsList,
+    MyGoodsSearch,
+    MyUserInfo,
+  },
 
-	created() {
-		//请求数据
-		this.$axios({
-			url: '/api/cart',
-		}).then((res) => {
-			console.log(res);
-			this.list = res.data.list;
-		});
-	},
+  data() {
+    return {
+      tabList: [
+        {
+          iconText: "icon-shangpinliebiao",
+          text: "商品列表",
+          componentName: "MyGoodsList",
+        },
+        {
+          iconText: "icon-sousuo",
+          text: "商品搜索",
+          componentName: "MyGoodsSearch",
+        },
+        {
+          iconText: "icon-user",
+          text: "我的信息",
+          componentName: "MyUserInfo",
+        },
+      ],
+      comName: "MyGoodsList",
+    };
+  },
+  methods: {
+    changTabFn(val) {
+      this.comName = { 0: "MyGoodsList", 1: "MyGoodsSearch", 2: "MyUserInfo" }[
+        val
+      ];
+    },
+  },
 };
 </script>
 
-<style>
-.mai {
-	margin-top: 45px;
-}
-</style>
+<style></style>
