@@ -7,11 +7,11 @@
       <component :is="comName"></component>
     </div>
     <MyTabBar :list="tabList" @changeCom="changeComFn"></MyTabBar>
-    <checkKeyVue></checkKeyVue>
+  
   </div>
 </template>
 <script>
-import checkKeyVue from './components/checkKey.vue'
+
 import MyHeader from './components/MyHeader.vue'
 import MyTabBar from './components/MyTabBar.vue'
 import MyTable from './components/MyTable.vue'
@@ -31,7 +31,7 @@ export default {
     MyGoodsList,
     MyGoodsSearch,
     MyUserInfo,
-    checkKeyVue
+ 
 },
   data () {
     return {

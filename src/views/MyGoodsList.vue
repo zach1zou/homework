@@ -23,6 +23,7 @@
         </td>
         <td>
           <button class="btn btn-danger btn-sm" @click="DelFn(scope.row.id)">删除</button>
+          <checkKeyVue></checkKeyVue>
         </td>
       </template>
 
@@ -31,6 +32,7 @@
 </template>
 <script>
 import MyTable from '@/components/MyTable.vue'
+import checkKeyVue from '@/components/checkKey.vue';
 export default {
   props:{ 
 arr: 
@@ -45,7 +47,8 @@ obj:
 } 
 }, 
   components: {
-    MyTable
+    MyTable,
+    checkKeyVue
 },
   data () {
     return {
