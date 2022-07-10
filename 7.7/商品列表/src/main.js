@@ -23,17 +23,6 @@ Vue.directive("focus", {
   },
 });
 
-//添加一个自定义属性根据list的权限值选择是否可以编辑
-Vue.directive("permission", {
-  inserted(ele, bilind, vnode) {
-    if (bilind.value == "admin" || bilind.value == "dog") {
-      ele.style.display = "block";
-    } else {
-      ele.style.display = "none";
-    }
-  },
-});
-
 new Vue({
   render: (h) => h(App),
 }).$mount("#app");

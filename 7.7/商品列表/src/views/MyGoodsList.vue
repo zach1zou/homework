@@ -49,13 +49,6 @@
           <button class="btn btn-danger btn-sm" @click="delFn(scope.row.id)">
             删除
           </button>
-          <button
-            style="margin-left: 10px"
-            class="btn btn-warning btn-sm"
-            v-permission="scope.row.permission"
-          >
-            编辑
-          </button>
         </td>
       </template>
     </MyTable>
@@ -70,39 +63,17 @@ export default {
   },
   data() {
     return {
-      list: [
-        {
-          id: 1,
-          goods_name: "Teenmix/天美意夏季专柜同款金色布女鞋6YF18BT6",
-          goods_price: 298,
-          tags: ["舒适", "透气"],
-          permission: "admin",
-        },
-        {
-          id: 2,
-          goods_name: "Teenmix/天美意夏季专柜同款金色布女鞋6YF18BT6",
-          goods_price: 298,
-          tags: ["舒适", "透气"],
-          permission: "user",
-        },
-        {
-          id: 3,
-          goods_name: "Teenmix/天美意夏季专柜同款金色布女鞋6YF18BT6",
-          goods_price: 298,
-          tags: ["舒适", "透气"],
-          permission: "admin",
-        },
-        {
-          id: 4,
-          goods_name: "Teenmix/天美意夏季专柜同款金色布女鞋6YF18BT6",
-          goods_price: 298,
-          tags: ["舒适", "透气"],
-          permission: "dog",
-        },
-      ],
+      list: [],
     };
   },
   methods: {
+    render() {
+      this.$axios({
+        url: "/api/goods",
+      }).then((res) => {
+        this.list = res.data.data;
+      });
+    },
     delFn(id) {
       const index = this.list.findIndex((item) => item.id == id);
       this.list.splice(index, 1);
@@ -117,14 +88,13 @@ export default {
       item.inputVisible = false;
     },
   },
-  /*  created() {
+  created() {
     this.$axios({
       url: "/api/goods",
     }).then((res) => {
-      console.log(res.data.data);
       this.list = res.data.data;
     });
-  }, */
+  },
 };
 </script>
 
